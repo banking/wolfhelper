@@ -1,6 +1,3 @@
-
-
-
 import 'package:wolfhelper/role.dart';
 
 class PlayerInfo {
@@ -8,16 +5,17 @@ class PlayerInfo {
   PlayerInfo({
     this.name = "",
     this.number = -1,
+//    this.roles = <Role>[],
   });
   String name;
   int number;
-  List<Role> roles;
-
+  List<Role> roles = <Role>[];
 }
 
-final List<PlayerInfo> leftPlayers = _buildPlayerInfos();
+final List<PlayerInfo> leftPlayers = _buildLeftPlayerInfos();
+final List<PlayerInfo> rightPlayers = _buildRightPlayerInfos();
 
-List<PlayerInfo> _buildPlayerInfos() {
+List<PlayerInfo> _buildLeftPlayerInfos() {
   List<PlayerInfo> playerInfos = <PlayerInfo>[
     PlayerInfo(
     name: 'Shrine',
@@ -44,6 +42,36 @@ List<PlayerInfo> _buildPlayerInfos() {
       number: 6,
     ),
   ];
+  playerInfos[0].roles.add(role1);
+  playerInfos[2].roles.add(role2);
   return playerInfos;
+}
+
+List<PlayerInfo> _buildRightPlayerInfos() {
+  List<PlayerInfo> rightPlayerInfos = <PlayerInfo>[
+    PlayerInfo(
+      name: 'Squeeze',
+      number: 7,
+    ),
+    PlayerInfo(
+      name: 'WaterMelon',
+      number: 8,
+    ),
+    PlayerInfo(
+      name: 'dandelion',
+      number: 9,
+    ),
+    PlayerInfo(
+      name: 'Coffee',
+      number: 10,
+    ),
+    PlayerInfo(
+      name: 'tsugawa',
+      number: 11,
+    ),
+  ];
+  rightPlayerInfos[0].roles.add(role1);
+  rightPlayerInfos[2].roles.add(role2);
+  return rightPlayerInfos;
 }
 
