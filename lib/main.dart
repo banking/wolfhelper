@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wolfhelper/player.dart';
 
 void main() => runApp(MyApp());
 
@@ -59,6 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    PlayerInfo _buildDarkTheme() {
+      return null;
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -69,43 +75,143 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("测试"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/main_bg.png"),
+            fit: BoxFit.cover,
+          ),
         ),
+        child: Flow(
+          delegate: OpacityFlowDelegate(1.0),
+            children: <Widget>[
+              Align(
+                alignment: const Alignment(-0.9, -1.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+//            mainAxisSize: MainAxisSize.max,
+                  children: leftPlayers.map<Widget>((PlayerInfo playerInfo) {
+                    return Stack(
+                        children: <Widget>[
+                          Image.asset(
+                            'assets/default_avatar.png',
+                             width: 40.0,
+                             height: 40.0,
+//                                      fit: BoxFit.contain,
+                          ),
+                          new Positioned(
+                            right: 3.0,
+                            top: 30.0,
+                            child: Text(
+                              playerInfo.name.toString(),
+//                                        style: theme.textTheme.caption,
+                            ),
+                          ),
+                        ],
+                    );
+                  }).toList(),
+                ),
+              ),
+              Align(
+                alignment: const Alignment(1.0, -1.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+//            mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ButtonBar(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        RaisedButton(
+                          child: const Text('C2 Btn1', semanticsLabel: 'RAISED BUTTON 1'),
+                          onPressed: () {
+                            // Perform some action
+                          },
+                        ),
+                      ],
+                    ),
+                    ButtonBar(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        RaisedButton.icon(
+                          icon: const Icon(Icons.add, size: 18.0),
+                          label: const Text('C2 Btn2', semanticsLabel: 'RAISED BUTTON 2'),
+                          onPressed: () {
+                            // Perform some action
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+
+        )
+
+//        children: <Widget> [
+//          Expanded(
+//            child: Column(
+//              mainAxisAlignment: MainAxisAlignment.spaceAround,
+//              children: <Widget>[
+//                const ListTile(
+//                  leading: Icon(Icons.album),
+//                  title: Text('1号'),
+//                  subtitle: Text('萌新'),
+//                  ),
+//                  ButtonTheme.bar( // make buttons use the appropriate styles for cards
+//                    child: ButtonBar(
+//                      children: <Widget>[
+//                        FlatButton(
+//                          child: const Text('BUY TICKETS'),
+//                          onPressed: () { /* ... */ },
+//                        ),
+//                      ],
+//                    ),
+//                ),
+//                const ListTile(
+//                  leading: Icon(Icons.album),
+//                  title: Text('1号'),
+//                  subtitle: Text('萌新'),
+//                ),
+//                ButtonTheme.bar( // make buttons use the appropriate styles for cards
+//                  child: ButtonBar(
+//                    children: <Widget>[
+//                      FlatButton(
+//                        child: const Text('BUY TICKETS'),
+//                        onPressed: () { /* ... */ },
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              ],
+//            ),
+//          ),
+//        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: 'Setting',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+class OpacityFlowDelegate extends FlowDelegate {
+  OpacityFlowDelegate(this.opacity);
+
+  double opacity;
+
+  @override
+  void paintChildren(FlowPaintingContext context) {
+  for (int i = 0; i < context.childCount; ++i) {
+  context.paintChild(i, opacity: opacity);
+  }
+  }
+
+  @override
+  bool shouldRepaint(OpacityFlowDelegate oldDelegate) => opacity != oldDelegate.opacity;
 }
