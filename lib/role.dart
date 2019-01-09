@@ -15,5 +15,5 @@ Role role1 = Role(
 );
 Role role2 = Role(
   roleId: 2,
-  rolePic: "assets/mjainmenu_mode_ui_role_2.png",
+  rolePic: "assets/mainmenu_mode_ui_role_2.png",
 );

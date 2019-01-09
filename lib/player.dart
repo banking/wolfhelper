@@ -43,6 +43,7 @@ List<PlayerInfo> _buildLeftPlayerInfos() {
     ),
   ];
   playerInfos[0].roles.add(role1);
+  playerInfos[0].roles.add(role2);
   playerInfos[2].roles.add(role2);
   return playerInfos;
 }

@@ -110,10 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         new Positioned(
                           left: 0.0,
                           top: 0.0,
-                          child: Column(
+                          child: Stack(
                             children:playerInfo.roles.map<Widget>((Role role) {
-                              if (playerInfo.roles.length == 0) {
-                              }
                               if (playerInfo.roles.indexOf(role) == 0) {
                                 return Stack(
                                   children: <Widget>[
@@ -138,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 return Stack(
                                   children: <Widget>[
                                     SizedBox(
-                                      width: 70.0,
+                                      width: 40.0,
                                       height: 70.0,
                                     ),
                                     new Positioned(
@@ -146,14 +144,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                       top: -3.0,
                                       child: Image.asset(
                                         role.rolePic,
-                                        width: 40.0,
-                                        height: 40.0,
+                                        width: 20.0,
+                                        height: 20.0,
                                         fit: BoxFit.contain,
                                       ),
                                     ),
                                   ],
                                 );
                               }
+                              return Stack(
+
+                              );
                             }).toList(),
                           ),
                         ),
