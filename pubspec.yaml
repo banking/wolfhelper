@@ -45,6 +45,9 @@ flutter:
     - assets/mainmenu_mode_ui_role_3.png
     - assets/mainmenu_mode_ui_role_4.png
     - assets/mainmenu_mode_ui_role_5.png
+    - assets/mainmenu_mode_ui_role_8.png
+    - assets/mainmenu_mode_ui_role_9.png
+    - assets/mainmenu_mode_ui_role_10.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
