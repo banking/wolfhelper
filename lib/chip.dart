@@ -7,10 +7,11 @@ List<Role> _selectedRoles;
 List<Role> _allRoles;
 
 class RoleChipSelector extends StatefulWidget {
-
-  RoleChipSelector(List<Role> selectedRoles, List<Role> allRoles) {
+  Function() notifyParentSetState;
+  RoleChipSelector(List<Role> selectedRoles, List<Role> allRoles, Function notifyFunc) {
     _selectedRoles = selectedRoles;
     _allRoles = allRoles;
+    notifyParentSetState = notifyFunc;
   }
 
   @override
@@ -123,6 +124,7 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
         backgroundColor: _nameToColor(role.roleName),
         label: Text(_capitalize(role.roleName)),
         onDeleted: () {
+          widget.notifyParentSetState();
           setState(() {
             _removeRoles(role);
           });
@@ -138,6 +140,7 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
         label: Text(_capitalize(role.roleName)),
         selected: _markMaterial == role.roleName,
         onSelected: (bool value) {
+          widget.notifyParentSetState();
           setState(() {
             _markMaterial = value ? role.roleName : '';
             _addRoles(role);

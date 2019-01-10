@@ -44,6 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     final ThemeData theme = Theme.of(context);
+    void notifySetState() {
+      setState(() {
+        //do nothing 为子Widget调用
+      });
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -58,64 +63,37 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/main_bg.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Flow(
-          delegate: OpacityFlowDelegate(1.0),
-            children: <Widget>[
-              Align(
-                alignment: const Alignment(-0.9, -1.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/main_bg.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Flow(
+              delegate: OpacityFlowDelegate(1.0),
+              children: <Widget>[
+                Align(
+                  alignment: const Alignment(-0.9, -1.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
 //            mainAxisSize: MainAxisSize.max,
-                  children: leftPlayers.map<Widget>((PlayerInfo playerInfo) {
-                    return AvatarLayout(playerInfo);
-                  }).toList(),
+                    children: leftPlayers.map<Widget>((PlayerInfo playerInfo) {
+                      return AvatarLayout(playerInfo, notifySetState);
+                    }).toList(),
+                  ),
                 ),
-              ),
-              Align(
-                alignment: const Alignment(1.0, -1.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: rightPlayers.map<Widget>((PlayerInfo playerInfo) {
-                    return Stack(
-                      children: <Widget>[
-
-                        Image.asset(
-                          'assets/default_avatar.png',
-                          width: 40.0,
-                          height: 40.0,
-                          fit: BoxFit.contain,
-                        ),
-                        new Positioned(
-                          left: 3.0,
-                          top: 25.0,
-                          child: Text(
-                            playerInfo.name.toString(),
-                            style: theme.textTheme.caption,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 70.0,
-                          height: 70.0,
-                        ),
-                        new Positioned(
-                          left: 0.0,
-                          top: 0.0,
-                          child: AvatarLayout(playerInfo),
-                        ),
-                      ],
-                    );
-                  }).toList(),
+                Align(
+                  alignment: const Alignment(1.0, -1.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: rightPlayers.map<Widget>((PlayerInfo playerInfo) {
+                      return AvatarLayout(playerInfo, notifySetState);
+                    }).toList(),
+                  ),
                 ),
-              ),
-            ],
-        )
-      ),
+              ],
+            )
+        ),
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: _incrementCounter,
 //        tooltip: 'Setting',

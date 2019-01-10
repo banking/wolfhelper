@@ -7,12 +7,14 @@ import 'package:wolfhelper/role.dart';
 class AvatarLayout extends StatefulWidget {
 
   PlayerInfo _playerInfo;
-  AvatarLayout(PlayerInfo playerInfo) {
+  Function() notifyParentSetState;
+  AvatarLayout(PlayerInfo playerInfo, Function notifyFunc) {
     this._playerInfo = playerInfo;
+    this.notifyParentSetState = notifyFunc;
   }
 
   @override
-  _AvatarLayoutState createState() => _AvatarLayoutState(_playerInfo);
+  _AvatarLayoutState createState() => _AvatarLayoutState(_playerInfo, notifyParentSetState);
 
 
 }
@@ -20,8 +22,11 @@ class AvatarLayout extends StatefulWidget {
 class _AvatarLayoutState extends State<AvatarLayout> {
 
   PlayerInfo playerInfo;
-  _AvatarLayoutState(PlayerInfo playerInfo) {
+  Function() notifyParentSetState;
+
+  _AvatarLayoutState(PlayerInfo playerInfo, Function notifyFunc) {
     this.playerInfo = playerInfo;
+    this.notifyParentSetState = notifyFunc;
   }
 
 
@@ -103,19 +108,16 @@ class _AvatarLayoutState extends State<AvatarLayout> {
             ),
             onPressed: () {
               showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-//
-                return Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: new GestureDetector(onTap: () {
-                        setState(() {
-                          playerInfo.number = 7;
-                        });
-//                        Navigator.pop(context);
-                      }, child: RoleChipSelector(playerInfo.roles, commonRoleList),
-                      ),
-                    )
-                );
+              return new GestureDetector(onTap: () {
+                  setState(() {
+
+                  });
+                },
+                  child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: RoleChipSelector(playerInfo.roles, commonRoleList, notifyParentSetState),
+                  )
+              );
               });
             },
         ),
