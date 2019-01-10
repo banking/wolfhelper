@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
 import 'package:wolfhelper/role.dart';
 
@@ -37,18 +38,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +151,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
                               List<Role> selectedRoles = playerInfo.roles;
-
 //                              final List<Widget> chips = selectedRoles.map<Widget>((Role role) {
 //                                return Chip(
 //                                  key: ValueKey<String>(name),
@@ -178,13 +166,14 @@ class _MyHomePageState extends State<MyHomePage> {
                               return Container(
                                   child: Padding(
                                       padding: const EdgeInsets.all(32.0),
-                                      child: Text('This is the modal bottom sheet. Tap anywhere to dismiss.',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Theme.of(context).accentColor,
-                                              fontSize: 24.0
-                                          )
-                                      )
+                                      child: ChipDemo(),
+//                                      child: Text('This is the modal bottom sheet. Tap anywhere to dismiss.',
+//                                          textAlign: TextAlign.center,
+//                                          style: TextStyle(
+//                                              color: Theme.of(context).accentColor,
+//                                              fontSize: 24.0
+//                                          )
+//                                      )
                                   )
                               );
                             });
