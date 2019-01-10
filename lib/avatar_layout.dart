@@ -103,10 +103,17 @@ class _AvatarLayoutState extends State<AvatarLayout> {
             ),
             onPressed: () {
               showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+//
                 return Container(
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
-                      child: RoleChipSelector(playerInfo.roles, commonRoleList),
+                      child: new GestureDetector(onTap: () {
+                        setState(() {
+                          playerInfo.number = 7;
+                        });
+//                        Navigator.pop(context);
+                      }, child: RoleChipSelector(playerInfo.roles, commonRoleList),
+                      ),
                     )
                 );
               });
