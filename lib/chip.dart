@@ -3,27 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wolfhelper/role.dart';
 
-//List<String> _selectedMaterials = <String>[
-//  'poker',
-//  'fish and',
-//];
-//
-//List<String> _allMaterials = <String>[
-//  'poker',
-//  'tortilla',
-//  'fish and',
-//  'micro',
-//  'wood',
-//];
-
 List<Role> _selectedRoles;
 List<Role> _allRoles;
 
 class RoleChipSelector extends StatefulWidget {
 
-  RoleChipSelector(List<Role> selectedRols, List<Role> allRols) {
-    _selectedRoles = selectedRols;
-    _allRoles = allRols;
+  RoleChipSelector(List<Role> selectedRoles, List<Role> allRoles) {
+    _selectedRoles = selectedRoles;
+    _allRoles = allRoles;
   }
 
   @override
@@ -98,7 +85,7 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
   }
 
   void _removeRoles(Role role) {
-    _selectedRoles.remove(role.roleName);
+    _selectedRoles.remove(role);
     if (_markMaterial == role.roleName) {
       _markMaterial = '';
     }
