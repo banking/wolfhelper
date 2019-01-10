@@ -1,19 +1,35 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wolfhelper/role.dart';
 
-const List<String> _selectedMaterials = <String>[
-  'poker',
-  'fish and',
-];
+//List<String> _selectedMaterials = <String>[
+//  'poker',
+//  'fish and',
+//];
+//
+//List<String> _allMaterials = <String>[
+//  'poker',
+//  'tortilla',
+//  'fish and',
+//  'micro',
+//  'wood',
+//];
 
-const List<String> _allMaterials = <String>[
-  'poker',
-  'tortilla',
-  'fish and',
-  'micro',
-  'wood',
-];
+List<Role> _selectedRoles;
+List<Role> _allRoles;
+
+class RoleChipSelector extends StatefulWidget {
+
+  RoleChipSelector(List<Role> selectedRols, List<Role> allRols) {
+    _selectedRoles = selectedRols;
+    _allRoles = allRols;
+  }
+
+  @override
+  _RoleChipSelectorState createState() => _RoleChipSelectorState();
+}
+
 
 class _ChipsTile extends StatelessWidget {
   const _ChipsTile({
@@ -67,40 +83,30 @@ class _ChipsTile extends StatelessWidget {
   }
 }
 
-class ChipDemo extends StatefulWidget {
-  static const String routeName = '/material/chip';
 
-  @override
-  _ChipDemoState createState() => _ChipDemoState();
-}
 
-class _ChipDemoState extends State<ChipDemo> {
-  _ChipDemoState() {
+class _RoleChipSelectorState extends State<RoleChipSelector> {
+  _RoleChipSelectorState() {
     _reset();
   }
 
-  final Set<String> _materials = Set<String>();
-  final Set<String> _allmaterials = Set<String>();
-  String _selectedMaterial = '';
+  String _markMaterial = '';
 
   // Initialize members with the default data.
   void _reset() {
-    _materials.clear();
-    _materials.addAll(_selectedMaterials);
-    _allmaterials.addAll(_allMaterials);
-    _selectedMaterial = '';
+    _markMaterial = '';
   }
 
-  void _removeMaterial(String name) {
-    _materials.remove(name);
-    if (_selectedMaterial == name) {
-      _selectedMaterial = '';
+  void _removeRoles(Role role) {
+    _selectedRoles.remove(role.roleName);
+    if (_markMaterial == role.roleName) {
+      _markMaterial = '';
     }
   }
   
-  void _addMaterial(String name) {
-    if(!_materials.contains(name)) {
-      _materials.add(name);
+  void _addRoles(Role role) {
+    if(!_selectedRoles.contains(role)) {
+      _selectedRoles.add(role);
     }
   }
 
@@ -124,30 +130,30 @@ class _ChipDemoState extends State<ChipDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> chips = _materials.map<Widget>((String name) {
+    final List<Widget> chips = _selectedRoles.map<Widget>((Role role) {
       return Chip(
-        key: ValueKey<String>(name),
-        backgroundColor: _nameToColor(name),
-        label: Text(_capitalize(name)),
+        key: ValueKey<String>(role.roleName),
+        backgroundColor: _nameToColor(role.roleName),
+        label: Text(_capitalize(role.roleName)),
         onDeleted: () {
           setState(() {
-            _removeMaterial(name);
+            _removeRoles(role);
           });
         },
       );
     }).toList();
 
 
-    final List<Widget> choiceChips = _allmaterials.map<Widget>((String name) {
+    final List<Widget> choiceChips = _allRoles.map<Widget>((Role role) {
       return ChoiceChip(
-        key: ValueKey<String>(name),
-        backgroundColor: _nameToColor(name),
-        label: Text(_capitalize(name)),
-        selected: _selectedMaterial == name,
+        key: ValueKey<String>(role.roleName),
+        backgroundColor: _nameToColor(role.roleName),
+        label: Text(_capitalize(role.roleName)),
+        selected: _markMaterial == role.roleName,
         onSelected: (bool value) {
           setState(() {
-            _selectedMaterial = value ? name : '';
-            _addMaterial(name);
+            _markMaterial = value ? role.roleName : '';
+            _addRoles(role);
           });
         },
       );
@@ -156,8 +162,8 @@ class _ChipDemoState extends State<ChipDemo> {
     final ThemeData theme = Theme.of(context);
     final List<Widget> tiles = <Widget>[
       const SizedBox(height: 8.0, width: 0.0),
-      _ChipsTile(label: 'Available Materials (Chip)', children: chips),
-      _ChipsTile(label: 'Choose a Material (ChoiceChip)', children: choiceChips),
+      _ChipsTile(label: '已标注身份', children: chips),
+      _ChipsTile(label: '选择身份', children: choiceChips),
       const Divider(),
     ];
 

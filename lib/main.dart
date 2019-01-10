@@ -150,30 +150,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           onPressed: () {
                             showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-                              List<Role> selectedRoles = playerInfo.roles;
-//                              final List<Widget> chips = selectedRoles.map<Widget>((Role role) {
-//                                return Chip(
-//                                  key: ValueKey<String>(name),
-//                                  backgroundColor: _nameToColor(name),
-//                                  label: Text(_capitalize(name)),
-//                                  onDeleted: () {
-//                                    setState(() {
-//                                      _removeMaterial(name);
-//                                    });
-//                                  },
-//                                );
-//                              }).toList();
                               return Container(
                                   child: Padding(
                                       padding: const EdgeInsets.all(32.0),
-                                      child: ChipDemo(),
-//                                      child: Text('This is the modal bottom sheet. Tap anywhere to dismiss.',
-//                                          textAlign: TextAlign.center,
-//                                          style: TextStyle(
-//                                              color: Theme.of(context).accentColor,
-//                                              fontSize: 24.0
-//                                          )
-//                                      )
+                                      child: RoleChipSelector(playerInfo.roles, commonRoleList),
                                   )
                               );
                             });
