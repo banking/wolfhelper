@@ -67,3 +67,39 @@ Role roleWolfKing = Role(
   rolePic: "assets/mainmenu_mode_ui_role_10.png",
   roleName: "狼王",
 );
+
+Role roleWhiteWolfKing = Role(
+  roleId: 12,
+  rolePic: "assets/mainmenu_mode_ui_role_12.png",
+  roleName: "白狼王",
+);
+
+Role roleWolfKing = Role(
+  roleId: 10,
+  rolePic: "assets/mainmenu_mode_ui_role_10.png",
+  roleName: "狼王",
+);
+
+Role roleGood = Role(
+  roleId: 101,
+  rolePic: "assets/mainmenu_mode_ui_role_101.png",
+  roleName: "好人",
+);
+
+Role roleGolden = Role(
+  roleId: 102,
+  rolePic: "assets/mainmenu_mode_ui_role_102.png",
+  roleName: "金水",
+);
+
+Role roleSilver = Role(
+  roleId: 103,
+  rolePic: "assets/mainmenu_mode_ui_role_103.png",
+  roleName: "银水",
+);
+
+Role roleGod = Role(
+  roleId: 104,
+  rolePic: "assets/mainmenu_mode_ui_role_104.png",
+  roleName: "神",
+);

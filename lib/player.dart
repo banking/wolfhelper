@@ -70,6 +70,10 @@ List<PlayerInfo> _buildRightPlayerInfos() {
       name: 'tsugawa',
       number: 11,
     ),
+    PlayerInfo(
+      name: 'Ammie',
+      number: 11,
+    ),
   ];
   rightPlayerInfos[1].roles.add(roleVillage);
   rightPlayerInfos[3].roles.add(roleHunter);
