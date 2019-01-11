@@ -33,100 +33,117 @@ class _AvatarLayoutState extends State<AvatarLayout> {
   Widget build(BuildContext context) {
 //    final avatarUrl = 'assets/Avatar_' + playerInfo
     List<Widget> widgets = <Widget>[
-        Container(
-          width: 50.0,
-          height: 50.0,
+      SizedBox(
+        width: 80.0,
+        height: 80.0,
+      ),
+      new Positioned(
+        left: 5.0,
+        top: 5.0,
+        child: Container(
+          width: 60.0,
+          height: 60.0,
           decoration: new BoxDecoration(
-            border: new Border.all(width: 2.0, color: Colors.red),
+//              border: new Border.all(width: 1.0, color: Colors.black),
             color: Colors.grey,
-            borderRadius: new BorderRadius.all(new Radius.circular(25.0)),
+            borderRadius: new BorderRadius.all(new Radius.circular(29.0)),
             image: new DecorationImage(
               image: new ExactAssetImage('assets/Avatar_' + playerInfo.number.toString() + ".png"), //)
               centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
             ),
           ),
         ),
-        new Positioned(
-          left: 5.0,
-          top: 25.0,
-          child: Text(
-            playerInfo.number.toString(),
-//            style: theme.textTheme.caption,
-          ),
+      ),
+     Container(
+      width: 70.0,
+      height: 70.0,
+      decoration: new BoxDecoration(
+        image: new DecorationImage(
+          image: new ExactAssetImage('assets/head_border_1.png'), //)
         ),
-        SizedBox(
-          width: 70.0,
-          height: 70.0,
+      ),
+    ),
+      new Positioned(
+        left: 25.0,
+        bottom: 3.0,
+        child: Text(
+          playerInfo.number.toString(),
+          style: Theme.of(context).textTheme.caption.copyWith(
+            fontSize: 26.0,
+            color: Colors.white,
+          )
         ),
-        new Positioned(
-          left: 0.0,
-          top: 0.0,
-          child: Stack(
-            children: playerInfo.roles.map<Widget>((Role role){
-              if (playerInfo.roles.indexOf(role) == 0) {
-                return Stack(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 70.0,
-                      height: 70.0,
-                    ),
-                    new Positioned(
-                      left: -3.0,
-                      top: -3.0,
-                      child: Image.asset(
-                        role.rolePic,
-                        width: 20.0,
-                        height: 20.0,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
-                );
-              }
-              if (playerInfo.roles.indexOf(role) == 1) {
-                return Stack(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 40.0,
-                      height: 70.0,
-                    ),
-                    new Positioned(
-                      right: -3.0,
-                      top: -3.0,
-                      child: Image.asset(
-                        role.rolePic,
-                        width: 20.0,
-                        height: 20.0,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
-                );
-              }
-              return Stack(
-              );
-             }).toList(),
-            ),
-          ),
-          FlatButton(
-            child: SizedBox(
-              width: 40.0,
-              height: 40.0,
-            ),
-            onPressed: () {
-              showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-              return new GestureDetector(onTap: () {
-                  setState(() {
+      ),
 
-                  });
-                },
-                  child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: RoleChipSelector(playerInfo.roles, classicsRoleList, notifyParentSetState),
-                  )
+      new Positioned(
+        left: 0.0,
+        top: 0.0,
+        child: Stack(
+          children: playerInfo.roles.map<Widget>((Role role){
+            if (playerInfo.roles.indexOf(role) == 0) {
+              return Stack(
+                children: <Widget>[
+                  SizedBox(
+                    width: 70.0,
+                    height: 80.0,
+                  ),
+                  new Positioned(
+                    left: 0.0,
+                    top: -3.0,
+                    child: Image.asset(
+                      role.rolePic,
+                      width: 20.0,
+                      height: 20.0,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
               );
-              });
-            },
+            }
+            if (playerInfo.roles.indexOf(role) == 1) {
+              return Stack(
+                children: <Widget>[
+                  SizedBox(
+                    width: 70.0,
+                    height: 80.0,
+                  ),
+                  new Positioned(
+                    right: 0,
+                    top: -3.0,
+                    child: Image.asset(
+                      role.rolePic,
+                      width: 20.0,
+                      height: 20.0,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
+              );
+            }
+            return Stack(
+            );
+           }).toList(),
+          ),
+        ),
+        FlatButton(
+          child: SizedBox(
+            width: 40.0,
+            height: 40.0,
+          ),
+          onPressed: () {
+            showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+            return new GestureDetector(onTap: () {
+                setState(() {
+
+                });
+              },
+                child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: RoleChipSelector(playerInfo.roles, classicsRoleList, notifyParentSetState),
+                )
+            );
+            });
+          },
         ),
       ];
 
