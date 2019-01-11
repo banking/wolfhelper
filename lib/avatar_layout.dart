@@ -29,21 +29,28 @@ class _AvatarLayoutState extends State<AvatarLayout> {
     this.notifyParentSetState = notifyFunc;
   }
 
-
   @override
   Widget build(BuildContext context) {
+//    final avatarUrl = 'assets/Avatar_' + playerInfo
     List<Widget> widgets = <Widget>[
-        Image.asset(
-          'assets/default_avatar.png',
-          width: 40.0,
-          height: 40.0,
-          fit: BoxFit.contain,
+        Container(
+          width: 50.0,
+          height: 50.0,
+          decoration: new BoxDecoration(
+            border: new Border.all(width: 2.0, color: Colors.red),
+            color: Colors.grey,
+            borderRadius: new BorderRadius.all(new Radius.circular(25.0)),
+            image: new DecorationImage(
+              image: new ExactAssetImage('assets/Avatar_' + playerInfo.number.toString() + ".png"), //)
+              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+            ),
+          ),
         ),
         new Positioned(
-          left: 0.0,
+          left: 5.0,
           top: 25.0,
           child: Text(
-            playerInfo.name.toString(),
+            playerInfo.number.toString(),
 //            style: theme.textTheme.caption,
           ),
         ),
