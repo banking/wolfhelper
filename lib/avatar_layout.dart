@@ -115,7 +115,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
                 },
                   child: Padding(
                   padding: const EdgeInsets.all(6.0),
-                  child: RoleChipSelector(playerInfo.roles, commonRoleList, notifyParentSetState),
+                  child: RoleChipSelector(playerInfo.roles, classicsRoleList, notifyParentSetState),
                   )
               );
               });

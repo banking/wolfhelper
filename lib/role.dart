@@ -12,13 +12,29 @@ class Role {
 }
 
 List<Role> commonRoleList = <Role>[
-  roleVillage,
-  roleWolf,
-  roleSeer,
-  roleWitch,
-  roleHunter,
-  roleIdiot,
+  roleGood,
+  roleGolden,
+  roleSilver,
+  roleGod,
 ];
+
+List<Role> classicsRoleList = getClassicsRoleList();
+
+List<Role> getClassicsRoleList() {
+  List<Role> classicsRoleListParam = <Role>[
+    roleVillage,
+    roleWolf,
+    roleSeer,
+    roleWitch,
+    roleHunter,
+    roleIdiot,
+  ];
+  classicsRoleListParam.addAll(commonRoleList);
+  return classicsRoleListParam;
+}
+
+
+
 
 Role roleVillage = Role(
   roleId: 1,
@@ -74,10 +90,10 @@ Role roleWhiteWolfKing = Role(
   roleName: "白狼王",
 );
 
-Role roleWolfKing = Role(
-  roleId: 10,
-  rolePic: "assets/mainmenu_mode_ui_role_10.png",
-  roleName: "狼王",
+Role roleKnight = Role(
+  roleId: 17,
+  rolePic: "assets/mainmenu_mode_ui_role_17.png",
+  roleName: "骑士",
 );
 
 Role roleGood = Role(
@@ -101,5 +117,5 @@ Role roleSilver = Role(
 Role roleGod = Role(
   roleId: 104,
   rolePic: "assets/mainmenu_mode_ui_role_104.png",
-  roleName: "神",
+  roleName: "神职",
 );

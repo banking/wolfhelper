@@ -72,7 +72,7 @@ List<PlayerInfo> _buildRightPlayerInfos() {
     ),
     PlayerInfo(
       name: 'Ammie',
-      number: 11,
+      number: 12,
     ),
   ];
   rightPlayerInfos[1].roles.add(roleVillage);
