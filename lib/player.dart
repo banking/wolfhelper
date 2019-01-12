@@ -42,9 +42,9 @@ List<PlayerInfo> _buildLeftPlayerInfos() {
       number: 6,
     ),
   ];
-  playerInfos[0].roles.add(roleVillage);
-  playerInfos[0].roles.add(roleWolf);
-  playerInfos[2].roles.add(roleWitch);
+//  playerInfos[0].roles.add(roleVillage);
+//  playerInfos[0].roles.add(roleWolf);
+//  playerInfos[2].roles.add(roleWitch);
   return playerInfos;
 }
 
@@ -75,8 +75,8 @@ List<PlayerInfo> _buildRightPlayerInfos() {
       number: 12,
     ),
   ];
-  rightPlayerInfos[1].roles.add(roleVillage);
-  rightPlayerInfos[3].roles.add(roleHunter);
+//  rightPlayerInfos[1].roles.add(roleVillage);
+//  rightPlayerInfos[3].roles.add(roleHunter);
   return rightPlayerInfos;
 }
 

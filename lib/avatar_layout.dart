@@ -43,6 +43,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
         child: Container(
           width: 60.0,
           height: 60.0,
+//          alignment: Alignment.center,
           decoration: new BoxDecoration(
 //              border: new Border.all(width: 1.0, color: Colors.black),
             color: Colors.grey,
@@ -54,27 +55,27 @@ class _AvatarLayoutState extends State<AvatarLayout> {
           ),
         ),
       ),
-     Container(
-      width: 70.0,
-      height: 70.0,
-      decoration: new BoxDecoration(
-        image: new DecorationImage(
-          image: new ExactAssetImage('assets/head_border_1.png'), //)
+      Container(
+        width: 70.0,
+        height: 70.0,
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new ExactAssetImage('assets/head_border_1.png'), //)
+          ),
         ),
       ),
-    ),
-      new Positioned(
-        left: 25.0,
-        bottom: 3.0,
+      Container(
+        width: 70.0,
+        height: 80.0,
+        alignment: Alignment.bottomCenter,
         child: Text(
-          playerInfo.number.toString(),
-          style: Theme.of(context).textTheme.caption.copyWith(
-            fontSize: 26.0,
-            color: Colors.white,
-          )
+            playerInfo.number.toString(),
+            style: Theme.of(context).textTheme.caption.copyWith(
+              fontSize: 26.0,
+              color: Colors.white,
+            )
         ),
       ),
-
       new Positioned(
         left: 0.0,
         top: 0.0,
@@ -128,7 +129,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
         FlatButton(
           child: SizedBox(
             width: 40.0,
-            height: 40.0,
+            height: 80.0,
           ),
           onPressed: () {
             showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
