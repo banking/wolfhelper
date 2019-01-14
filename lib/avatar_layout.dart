@@ -60,7 +60,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
         height: 70.0,
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new ExactAssetImage('assets/head_border_1.png'), //)
+            image: new ExactAssetImage('assets/head_border_1.png'),
           ),
         ),
       ),
@@ -82,44 +82,144 @@ class _AvatarLayoutState extends State<AvatarLayout> {
         child: Stack(
           children: playerInfo.roles.map<Widget>((Mark role){
             if (playerInfo.roles.indexOf(role) == 0) {
-              return Stack(
-                children: <Widget>[
-                  SizedBox(
-                    width: 70.0,
-                    height: 80.0,
-                  ),
-                  new Positioned(
-                    left: 0.0,
-                    top: -3.0,
-                    child: Image.asset(
-                      role.markPicPath,
-                      width: 20.0,
-                      height: 20.0,
-                      fit: BoxFit.contain,
+              if (role is NumberMark) {
+                return Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 70.0,
+                      height: 80.0,
                     ),
-                  ),
-                ],
-              );
+                    new Positioned(
+                      left: 0.0,
+                      top: -3.0,
+                      child: Container(
+                        width: 25.0,
+                        height: 25.0,
+                        alignment: Alignment.center,
+                        decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                            image: new ExactAssetImage("assets/test_role_bg2.png"), //)
+//              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+                          ),
+                        ),
+                        child: Text(
+                          role.status + role.name,
+                          style: Theme.of(context).textTheme.caption.copyWith(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+
+                    ),
+                  ],
+                );
+              } else {
+                return Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 70.0,
+                      height: 80.0,
+                    ),
+                    new Positioned(
+                      left: 0.0,
+                      top: -3.0,
+                      child: Container(
+                        width: 25.0,
+                        height: 25.0,
+//          alignment: Alignment.center,
+                        decoration: new BoxDecoration(
+//              border: new Border.all(width: 1.0, color: Colors.black),
+//            color: Colors.grey,
+//                        borderRadius: new BorderRadius.all(new Radius.circular(30.0)),
+                          image: new DecorationImage(
+                            image: new ExactAssetImage("assets/test_role_bg2.png"), //)
+//              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+                          ),
+                        ),
+                        child: Image.asset(
+                          role.markPicPath,
+                          width: 15.0,
+                          height: 15.0,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+
+                    ),
+                  ],
+                );
+              }
+
             }
             if (playerInfo.roles.indexOf(role) == 1) {
-              return Stack(
-                children: <Widget>[
-                  SizedBox(
-                    width: 70.0,
-                    height: 80.0,
-                  ),
-                  new Positioned(
-                    right: 0,
-                    top: -3.0,
-                    child: Image.asset(
-                      role.markPicPath,
-                      width: 20.0,
-                      height: 20.0,
-                      fit: BoxFit.contain,
+              if (role is NumberMark) {
+                return Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 70.0,
+                      height: 80.0,
                     ),
-                  ),
-                ],
-              );
+                    new Positioned(
+                      right: 0.0,
+                      top: -3.0,
+                      child: Container(
+                        width: 25.0,
+                        height: 25.0,
+                        alignment: Alignment.center,
+                        decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                            image: new ExactAssetImage("assets/test_role_bg2.png"), //)
+//              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+                          ),
+                        ),
+                        child: Text(
+                          role.status + role.name,
+                          style: Theme.of(context).textTheme.caption.copyWith(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+
+                    ),
+                  ],
+                );
+              } else {
+                return Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 70.0,
+                      height: 80.0,
+                    ),
+                    new Positioned(
+                      right: 0,
+                      top: -3.0,
+                      child: Container(
+                        width: 25.0,
+                        height: 25.0,
+//          alignment: Alignment.center,
+                        decoration: new BoxDecoration(
+//              border: new Border.all(width: 1.0, color: Colors.black),
+//            color: Colors.grey,
+//                        borderRadius: new BorderRadius.all(new Radius.circular(30.0)),
+                          image: new DecorationImage(
+                            image: new ExactAssetImage("assets/test_role_bg2.png"), //)
+//              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+                          ),
+                        ),
+                        child: Image.asset(
+                          role.markPicPath,
+                          width: 15.0,
+                          height: 15.0,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }
             }
             return Stack(
             );

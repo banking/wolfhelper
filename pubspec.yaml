@@ -67,6 +67,8 @@ flutter:
     - assets/Avatar_10.png
     - assets/Avatar_11.png
     - assets/Avatar_12.png
+    - assets/test_role_bg.png
+    - assets/test_role_bg2.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
