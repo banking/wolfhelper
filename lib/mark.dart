@@ -82,7 +82,7 @@ List<Mark> getNumberDescRoleList() {
 
 Mark rolePlus = StatusMark(10001, "", "+");
 
-Mark roleMinus = Mark(10002, "", "-",);
+Mark roleMinus = StatusMark(10002, "", "-",);
 
 Mark roleVillage = new Mark(1, "assets/mainmenu_mode_ui_role_1.png", "村民");
 

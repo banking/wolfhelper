@@ -36,7 +36,7 @@ class _ChipsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> cardChildren = <Widget>[
       Container(
-        padding: const EdgeInsets.only(top: 16.0, bottom: 4.0),
+        padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
         alignment: Alignment.center,
         child: Text(label, textAlign: TextAlign.start),
       ),
@@ -56,8 +56,8 @@ class _ChipsTile extends StatelessWidget {
             container: true,
             child: Container(
               alignment: Alignment.center,
-              constraints: const BoxConstraints(minWidth: 48.0, minHeight: 48.0),
-              padding: const EdgeInsets.all(8.0),
+              constraints: const BoxConstraints(minWidth: 48.0, minHeight: 38.0),
+              padding: const EdgeInsets.all(2.0),
               child: Text('None', style: textStyle),
             ),
           ));
@@ -80,17 +80,17 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
     _reset();
   }
 
-  String _markMaterial = '';
+  String _markStatus = '+';
 
   // Initialize members with the default data.
   void _reset() {
-    _markMaterial = '';
+    _markStatus = '+';
   }
 
   void _removeRoles(Mark role) {
     _selectedRoles.remove(role);
-    if (_markMaterial == role.name) {
-      _markMaterial = '';
+    if (_markStatus == role.name) {
+      _markStatus = '';
     }
   }
   
@@ -130,10 +130,10 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
         backgroundColor: _nameToColor(name),
         label: Text(_capitalize(name)),
         onDeleted: () {
-          widget.notifyParentSetState();
           setState(() {
             _removeRoles(role);
           });
+          widget.notifyParentSetState();
         },
       );
     }).toList();
@@ -143,39 +143,39 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
         key: ValueKey<String>(role.name),
         backgroundColor: _nameToColor(role.name),
         label: Text(_capitalize(role.name)),
-        selected: _markMaterial == role.name,
+        selected: false,
         onSelected: (bool value) {
-          widget.notifyParentSetState();
           setState(() {
 //            _markMaterial = value ? role.name : '';
             _addRoles(role);
           });
+          widget.notifyParentSetState();
         },
       );
     }).toList();
 
     final List<Widget> numberChips = _numberMarks.map<Widget>((Mark role) {
-      return ChoiceChip(
+      ChoiceChip choiceChip = ChoiceChip(
         key: ValueKey<String>(role.name),
         backgroundColor: _nameToColor(role.name),
         label: Text(_capitalize(role.name)),
-        selected: _markMaterial == role.name,
+        selected: _markStatus == role.name,
         onSelected: (bool value) {
-          widget.notifyParentSetState();
           setState(() {
             if (role is StatusMark) {
-              _markMaterial = value ? role.name : '';
+              _markStatus = role.name;
             }
             if (role is NumberMark) {
-              if (_markMaterial != "") {
-                role.status = _markMaterial;
+              if (_markStatus != "") {
+                role.status = _markStatus;
+                _addRoles(role);
               }
-              _addRoles(role);
             }
-
           });
+          widget.notifyParentSetState();
         },
       );
+      return choiceChip;
     }).toList();
 
     final ThemeData theme = Theme.of(context);

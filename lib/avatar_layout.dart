@@ -138,7 +138,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.all(6.0),
+                padding: const EdgeInsets.all(2.0),
                 child: RoleChipSelector(playerInfo.roles, roleMarkList, numberMarkList, notifyParentSetState),
               )
             );
