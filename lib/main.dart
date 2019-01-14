@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:wolfhelper/about.dart';
 import 'package:wolfhelper/avatar_layout.dart';
 import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
 import 'package:wolfhelper/mark.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyApp(
+));
+
+int seed = 0;
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: <String, WidgetBuilder>{
+        'about': (BuildContext context) => About(seed: seed),
+      },
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -116,6 +123,9 @@ class HelperDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.contact_mail),
             title: const Text('关于作者'),
+            onTap: () {
+              Navigator.pushNamed(context, 'about');
+            },
           ),
         ],
       ),
