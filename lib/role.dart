@@ -1,14 +1,17 @@
 
+import 'package:wolfhelper/player.dart';
 
 class Role {
   Role({
     this.roleId = 1,
     this.rolePic = "",
     this.roleName = "",
+    this.isNumberRole = false,
   });
   int roleId;
   String rolePic;
   String roleName;
+  bool isNumberRole;
 }
 
 List<Role> commonRoleList = <Role>[
@@ -18,7 +21,14 @@ List<Role> commonRoleList = <Role>[
   roleGod,
 ];
 
+List<Role> markRole = <Role> [
+  roleGood,
+  roleGolden,
+];
+
 List<Role> classicsRoleList = getClassicsRoleList();
+
+
 
 List<Role> getClassicsRoleList() {
   List<Role> classicsRoleListParam = <Role>[
@@ -33,8 +43,27 @@ List<Role> getClassicsRoleList() {
   return classicsRoleListParam;
 }
 
+List<Role> getNumberRoleList() {
+  int playerCount = getPlayerCount();
+  List<Role> numberRoles = <Role>[];
+
+  return numberRoles;
+}
 
 
+Role rolePlus = Role(
+  roleId: 10000,
+  rolePic: "",
+  roleName: "+",
+  isNumberRole : true,
+);
+
+Role roleMinus = Role(
+  roleId: 10001,
+  rolePic: "",
+  roleName: "-",
+  isNumberRole : true,
+);
 
 Role roleVillage = Role(
   roleId: 1,

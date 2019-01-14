@@ -34,7 +34,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
 //    final avatarUrl = 'assets/Avatar_' + playerInfo
     List<Widget> widgets = <Widget>[
       SizedBox(
-        width: 80.0,
+        width: 40.0,
         height: 80.0,
       ),
       new Positioned(
@@ -46,11 +46,11 @@ class _AvatarLayoutState extends State<AvatarLayout> {
 //          alignment: Alignment.center,
           decoration: new BoxDecoration(
 //              border: new Border.all(width: 1.0, color: Colors.black),
-            color: Colors.grey,
-            borderRadius: new BorderRadius.all(new Radius.circular(29.0)),
+//            color: Colors.grey,
+            borderRadius: new BorderRadius.all(new Radius.circular(30.0)),
             image: new DecorationImage(
               image: new ExactAssetImage('assets/Avatar_' + playerInfo.number.toString() + ".png"), //)
-              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+//              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
             ),
           ),
         ),
@@ -127,15 +127,14 @@ class _AvatarLayoutState extends State<AvatarLayout> {
           ),
         ),
         FlatButton(
-          child: SizedBox(
-            width: 40.0,
-            height: 80.0,
+          child: Container(
+            width: 30.0,
+            height: 70.0,
           ),
           onPressed: () {
             showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
             return new GestureDetector(onTap: () {
                 setState(() {
-
                 });
               },
                 child: Padding(

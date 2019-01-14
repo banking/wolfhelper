@@ -43,17 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    final ThemeData theme = Theme.of(context);
     void notifySetState() {
       setState(() {
         //do nothing 为子Widget调用
       });
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text("身份标记"),
-      ),
 
+      appBar: AppBar(
+        title: Text("预女猎白-12人"),
+      ),
+      drawer: HelperDrawer(),
       body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -66,11 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Align(
                   alignment: const Alignment(-0.9, -1.0),
+//                  widthFactor: 1.7,
+//                  heightFactor: 0.02,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
 //            mainAxisSize: MainAxisSize.max,
                     children: leftPlayers.map<Widget>((PlayerInfo playerInfo) {
                       return AvatarLayout(playerInfo, notifySetState);
+//                      return new Container();
                     }).toList(),
                   ),
                 ),
@@ -90,6 +93,52 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+class HelperDrawer extends StatelessWidget {
+  const HelperDrawer({ Key key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      // Note: for real apps, see the Gallery material Drawer demo. More
+      // typically, a drawer would have a fixed header with a scrolling body
+      // below it.
+      child: ListView(
+        key: const PageStorageKey<String>('gallery-drawer'),
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          FancyDrawerHeader(),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text('编辑板子'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.brightness_5),
+            title: const Text('设置'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.contact_mail),
+            title: const Text('关于作者'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FancyDrawerHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.purple,
+      height: 40.0,
+      child: const SafeArea(
+        bottom: false,
+        child: Placeholder(),
+      ),
+    );
+  }
+}
+
 class OpacityFlowDelegate extends FlowDelegate {
   OpacityFlowDelegate(this.opacity);
 
@@ -97,9 +146,9 @@ class OpacityFlowDelegate extends FlowDelegate {
 
   @override
   void paintChildren(FlowPaintingContext context) {
-  for (int i = 0; i < context.childCount; ++i) {
-  context.paintChild(i, opacity: opacity);
-  }
+    for (int i = 0; i < context.childCount; ++i) {
+      context.paintChild(i, opacity: opacity);
+    }
   }
 
   @override
