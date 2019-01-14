@@ -41,6 +41,7 @@ flutter:
     - assets/main_bg.png
     - assets/default_avatar.png
     - assets/head_border_1.png
+    - assets/head_border_2.png
     - assets/mainmenu_mode_ui_role_1.png
     - assets/mainmenu_mode_ui_role_2.png
     - assets/mainmenu_mode_ui_role_3.png

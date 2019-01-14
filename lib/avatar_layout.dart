@@ -34,7 +34,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
 //    final avatarUrl = 'assets/Avatar_' + playerInfo
     List<Widget> widgets = <Widget>[
       SizedBox(
-        width: 40.0,
+        width: 80.0,
         height: 80.0,
       ),
       new Positioned(

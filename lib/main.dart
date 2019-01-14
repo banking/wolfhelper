@@ -128,7 +128,7 @@ class FancyDrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.purple,
-      height: 40.0,
+      height: 200.0,
       child: const SafeArea(
         bottom: false,
         child: Placeholder(),
