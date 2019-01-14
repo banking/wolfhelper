@@ -1,16 +1,18 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wolfhelper/role.dart';
+import 'package:wolfhelper/mark.dart';
 
-List<Role> _selectedRoles;
-List<Role> _allRoles;
+List<Mark> _selectedRoles;
+List<Mark> _roleMarks;
+List<Mark> _numberMarks;
 
 class RoleChipSelector extends StatefulWidget {
   Function() notifyParentSetState;
-  RoleChipSelector(List<Role> selectedRoles, List<Role> allRoles, Function notifyFunc) {
+  RoleChipSelector(List<Mark> selectedRoles, List<Mark> roleMarks, List<Mark> numberMarks,Function notifyFunc) {
     _selectedRoles = selectedRoles;
-    _allRoles = allRoles;
+    _roleMarks = roleMarks;
+    _numberMarks = numberMarks;
     notifyParentSetState = notifyFunc;
   }
 
@@ -85,14 +87,14 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
     _markMaterial = '';
   }
 
-  void _removeRoles(Role role) {
+  void _removeRoles(Mark role) {
     _selectedRoles.remove(role);
-    if (_markMaterial == role.roleName) {
+    if (_markMaterial == role.name) {
       _markMaterial = '';
     }
   }
   
-  void _addRoles(Role role) {
+  void _addRoles(Mark role) {
     if(!_selectedRoles.contains(role)) {
       _selectedRoles.add(role);
     }
@@ -110,7 +112,7 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
   // unique colors, but they'll all be readable, since they have the same
   // saturation and value.
   Color _nameToColor(String name) {
-    assert(name.length > 1);
+//    assert(name.length > 1);
     final int hash = name.hashCode & 0xffff;
     final double hue = (360.0 * hash / (1 << 15)) % 360.0;
     return HSVColor.fromAHSV(1.0, hue, 0.4, 0.90).toColor();
@@ -118,11 +120,15 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> chips = _selectedRoles.map<Widget>((Role role) {
+    final List<Widget> selectedChips = _selectedRoles.map<Widget>((Mark role) {
+      String name = role.name;
+      if (role is NumberMark) {
+        name = role.status.toString() + role.name;
+      }
       return Chip(
-        key: ValueKey<String>(role.roleName),
-        backgroundColor: _nameToColor(role.roleName),
-        label: Text(_capitalize(role.roleName)),
+        key: ValueKey<String>(name),
+        backgroundColor: _nameToColor(name),
+        label: Text(_capitalize(name)),
         onDeleted: () {
           widget.notifyParentSetState();
           setState(() {
@@ -132,18 +138,41 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
       );
     }).toList();
 
-
-    final List<Widget> choiceChips = _allRoles.map<Widget>((Role role) {
+    final List<Widget> allRoleChips = _roleMarks.map<Widget>((Mark role) {
       return ChoiceChip(
-        key: ValueKey<String>(role.roleName),
-        backgroundColor: _nameToColor(role.roleName),
-        label: Text(_capitalize(role.roleName)),
-        selected: _markMaterial == role.roleName,
+        key: ValueKey<String>(role.name),
+        backgroundColor: _nameToColor(role.name),
+        label: Text(_capitalize(role.name)),
+        selected: _markMaterial == role.name,
         onSelected: (bool value) {
           widget.notifyParentSetState();
           setState(() {
-            _markMaterial = value ? role.roleName : '';
+//            _markMaterial = value ? role.name : '';
             _addRoles(role);
+          });
+        },
+      );
+    }).toList();
+
+    final List<Widget> numberChips = _numberMarks.map<Widget>((Mark role) {
+      return ChoiceChip(
+        key: ValueKey<String>(role.name),
+        backgroundColor: _nameToColor(role.name),
+        label: Text(_capitalize(role.name)),
+        selected: _markMaterial == role.name,
+        onSelected: (bool value) {
+          widget.notifyParentSetState();
+          setState(() {
+            if (role is StatusMark) {
+              _markMaterial = value ? role.name : '';
+            }
+            if (role is NumberMark) {
+              if (_markMaterial != "") {
+                role.status = _markMaterial;
+              }
+              _addRoles(role);
+            }
+
           });
         },
       );
@@ -152,8 +181,9 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
     final ThemeData theme = Theme.of(context);
     final List<Widget> tiles = <Widget>[
       const SizedBox(height: 8.0, width: 0.0),
-      _ChipsTile(label: '已标注身份', children: chips),
-      _ChipsTile(label: '选择身份', children: choiceChips),
+      _ChipsTile(label: '已标注', children: selectedChips),
+      _ChipsTile(label: '身份标注', children: allRoleChips),
+      _ChipsTile(label: '人物关系', children: numberChips),
       const Divider(),
     ];
 

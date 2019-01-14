@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wolfhelper/avatar_layout.dart';
 import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
-import 'package:wolfhelper/role.dart';
+import 'package:wolfhelper/mark.dart';
 
 void main() => runApp(MyApp());
 
@@ -70,10 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
 //                  heightFactor: 0.02,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-//            mainAxisSize: MainAxisSize.max,
                     children: leftPlayers.map<Widget>((PlayerInfo playerInfo) {
                       return AvatarLayout(playerInfo, notifySetState);
-//                      return new Container();
                     }).toList(),
                   ),
                 ),

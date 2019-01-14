@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
-import 'package:wolfhelper/role.dart';
+import 'package:wolfhelper/mark.dart';
 
 class AvatarLayout extends StatefulWidget {
 
@@ -80,7 +80,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
         left: 0.0,
         top: 0.0,
         child: Stack(
-          children: playerInfo.roles.map<Widget>((Role role){
+          children: playerInfo.roles.map<Widget>((Mark role){
             if (playerInfo.roles.indexOf(role) == 0) {
               return Stack(
                 children: <Widget>[
@@ -92,7 +92,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
                     left: 0.0,
                     top: -3.0,
                     child: Image.asset(
-                      role.rolePic,
+                      role.markPicPath,
                       width: 20.0,
                       height: 20.0,
                       fit: BoxFit.contain,
@@ -112,7 +112,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
                     right: 0,
                     top: -3.0,
                     child: Image.asset(
-                      role.rolePic,
+                      role.markPicPath,
                       width: 20.0,
                       height: 20.0,
                       fit: BoxFit.contain,
@@ -133,14 +133,14 @@ class _AvatarLayoutState extends State<AvatarLayout> {
           ),
           onPressed: () {
             showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-            return new GestureDetector(onTap: () {
+              return new GestureDetector(onTap: () {
                 setState(() {
                 });
               },
-                child: Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(6.0),
-                child: RoleChipSelector(playerInfo.roles, classicsRoleList, notifyParentSetState),
-                )
+                child: RoleChipSelector(playerInfo.roles, roleMarkList, numberMarkList, notifyParentSetState),
+              )
             );
             });
           },

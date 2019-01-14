@@ -1,4 +1,4 @@
-import 'package:wolfhelper/role.dart';
+import 'package:wolfhelper/mark.dart';
 
 class PlayerInfo {
 
@@ -9,7 +9,7 @@ class PlayerInfo {
   });
   String name;
   int number;
-  List<Role> roles = <Role>[];
+  List<Mark> roles = <Mark>[];
 }
 
 final List<PlayerInfo> leftPlayers = _buildLeftPlayerInfos();
