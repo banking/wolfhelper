@@ -126,16 +126,13 @@ class _AvatarLayoutState extends State<AvatarLayout> {
                       left: 0.0,
                       top: -3.0,
                       child: Container(
+                        padding: const EdgeInsets.all(1.5),
                         width: 25.0,
                         height: 25.0,
 //          alignment: Alignment.center,
                         decoration: new BoxDecoration(
-//              border: new Border.all(width: 1.0, color: Colors.black),
-//            color: Colors.grey,
-//                        borderRadius: new BorderRadius.all(new Radius.circular(30.0)),
                           image: new DecorationImage(
                             image: new ExactAssetImage("assets/test_role_bg2.png"), //)
-//              centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
                           ),
                         ),
                         child: Image.asset(
@@ -197,6 +194,7 @@ class _AvatarLayoutState extends State<AvatarLayout> {
                       right: 0,
                       top: -3.0,
                       child: Container(
+                        padding: const EdgeInsets.all(1.5),
                         width: 25.0,
                         height: 25.0,
 //          alignment: Alignment.center,
