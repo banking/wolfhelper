@@ -137,11 +137,12 @@ class FancyDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.purple,
-      height: 200.0,
+      height: 180.0,
       child: const SafeArea(
-        bottom: false,
-        child: Placeholder(),
+        child: Image(
+          image: AssetImage("assets/drawer_bg.png"),
+          fit: BoxFit.fill,
+        ),
       ),
     );
   }

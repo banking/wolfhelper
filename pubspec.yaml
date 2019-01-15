@@ -40,6 +40,7 @@ flutter:
   assets:
     - assets/main_bg.png
     - assets/default_avatar.png
+    - assets/drawer_bg.png
     - assets/head_border_1.png
     - assets/head_border_2.png
     - assets/mainmenu_mode_ui_role_1.png
