@@ -4,6 +4,7 @@ import 'package:wolfhelper/avatar_layout.dart';
 import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
 import 'package:wolfhelper/mark.dart';
+import 'package:wolfhelper/template.dart';
 
 void main() => runApp(MyApp(
 ));
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: <String, WidgetBuilder>{
         'about': (BuildContext context) => About(seed: seed),
+        'template': (BuildContext context) => TemplatePage(seed: seed),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -116,6 +118,9 @@ class HelperDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.edit),
             title: const Text('编辑板子'),
+            onTap: () {
+              Navigator.pushNamed(context, 'template');
+            },
           ),
           ListTile(
             leading: const Icon(Icons.brightness_5),
