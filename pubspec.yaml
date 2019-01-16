@@ -71,6 +71,10 @@ flutter:
     - assets/Avatar_12.png
     - assets/test_role_bg.png
     - assets/test_role_bg2.png
+  fonts:
+      - family: ComicNeue
+        fonts:
+          - asset: assets/fonts/ComicNeue.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
