@@ -35,12 +35,11 @@ List<Mark> markRoleList = <Mark> [
   roleMinus,
 ];
 
-List<Mark> roleMarkList = _getClassicsRoleMarkList();
-List<Mark> numberMarkList = _getNumberMarkList();
 
 
 
-List<Mark> _getClassicsRoleMarkList() {
+
+List<Mark> getClassicsRoleMarkList() {
   List<Mark> classicsRoleListParam = <Mark>[
     roleVillage,
     roleWolf,
@@ -53,7 +52,7 @@ List<Mark> _getClassicsRoleMarkList() {
   return classicsRoleListParam;
 }
 
-List<Mark> _getNumberMarkList() {
+List<Mark> getNumberMarkList() {
   List<Mark> numberRoleListParam = <Mark>[];
   numberRoleListParam.addAll(markRoleList);
   numberRoleListParam.addAll(getNumberDescRoleList());
@@ -61,13 +60,7 @@ List<Mark> _getNumberMarkList() {
 }
 
 
-void onTemplateUpdate() {
 
-}
-
-void onPlayerCountUpdate() {
-
-}
 
 List<Mark> getNumberDescRoleList() {
   int playerCount = getPlayerCount();

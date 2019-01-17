@@ -3,7 +3,7 @@ import 'package:wolfhelper/about.dart';
 import 'package:wolfhelper/avatar_layout.dart';
 import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
-import 'package:wolfhelper/mark.dart';
+import 'package:wolfhelper/values.dart';
 import 'package:wolfhelper/template.dart';
 
 void main() => runApp(MyApp(
@@ -15,20 +15,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: <String, WidgetBuilder>{
-        'about': (BuildContext context) => About(seed: seed),
-        'template': (BuildContext context) => TemplatePage(seed: seed),
-      },
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'ComicNeue',
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return new StoreProvider(
+      store: store,
+    ),
+//    return MaterialApp(
+//      routes: <String, WidgetBuilder>{
+//        'about': (BuildContext context) => About(seed: seed),
+//        'template': (BuildContext context) => TemplatePage(seed: seed),
+//      },
+//      title: 'Flutter Demo',
+//      theme: ThemeData(
+//        primarySwatch: Colors.blue,
+//        fontFamily: 'ComicNeue',
+//      ),
+//      home: MyHomePage(title: 'Flutter Demo Home Page'),
+//    );
   }
+
+
 }
+
+
+
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -49,6 +58,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  void onTemplateUpdate() {
+    setState(() {
+      //do nothing 为子Widget调用
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

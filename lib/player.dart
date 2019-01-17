@@ -12,15 +12,13 @@ class PlayerInfo {
   List<Mark> roles = <Mark>[];
 }
 
-final List<PlayerInfo> leftPlayers = _buildLeftPlayerInfos();
-final List<PlayerInfo> rightPlayers = _buildRightPlayerInfos();
 
 
 int getPlayerCount() {
   return 12;
 }
 
-List<PlayerInfo> _buildLeftPlayerInfos() {
+List<PlayerInfo> buildLeftPlayerInfos() {
   List<PlayerInfo> playerInfos = <PlayerInfo>[
     PlayerInfo(
     name: 'Shrine',
@@ -53,7 +51,7 @@ List<PlayerInfo> _buildLeftPlayerInfos() {
   return playerInfos;
 }
 
-List<PlayerInfo> _buildRightPlayerInfos() {
+List<PlayerInfo> buildRightPlayerInfos() {
   List<PlayerInfo> rightPlayerInfos = <PlayerInfo>[
     PlayerInfo(
       name: 'Squeeze',

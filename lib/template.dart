@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wolfhelper/main.dart';
 
 class TemplatePage extends StatelessWidget {
   const TemplatePage({ Key key, this.seed }) : super(key: key);
@@ -43,15 +44,16 @@ class _TemplateState extends State<TemplateView> {
     super.dispose();
   }
 
-  TemplateEnum selectedTemplate = TemplateEnum.classic12Template;
-
-//  void handleRadioValueChanged(int value) {
-//    setState(() {
-//      radioValue = value;
-//    });
-//  }
+  Template selectedTemplate = classic12Template;
+  void _handleRadioValueChanged(Template value) {
+    setState(() {
+      selectedTemplate = value;
+//      onTemplateUpdate();
+    });
+  }
 
 //  enum SingingCharacter { lafayette, jefferson }
+
 
 
   @override
@@ -74,17 +76,23 @@ class _TemplateState extends State<TemplateView> {
                     '选择板子：',
                     textDirection: TextDirection.ltr,
                   ),
-                  RadioListTile<TemplateEnum>(
+                  RadioListTile<Template>(
                     title: const Text("预女猎白"),
-                    value: TemplateEnum.classic12Template,
+                    value: classic12Template,
                     groupValue: selectedTemplate,
-                    onChanged: (TemplateEnum value) { setState(() { selectedTemplate = value; }); },
+                    onChanged: (Template value) { setState(() {  }); },
                   ),
-                  RadioListTile<TemplateEnum>(
-                    title: const Text('预女猎'),
-                    value: TemplateEnum.classic9Template,
+                  RadioListTile<Template>(
+                    title: const Text("狼枪守卫"),
+                    value: wolfKingGuardTemplate,
                     groupValue: selectedTemplate,
-                    onChanged: (TemplateEnum value) { setState(() { selectedTemplate = value; }); },
+                    onChanged: _handleRadioValueChanged,
+                  ),
+                  RadioListTile<Template>(
+                    title: const Text("狼枪摄梦人"),
+                    value: wolfKingDreamerTemplate,
+                    groupValue: selectedTemplate,
+                    onChanged: (Template value) { setState(() { selectedTemplate = value; }); },
                   ),
                 ],
               ),
@@ -95,18 +103,51 @@ class _TemplateState extends State<TemplateView> {
   }
 }
 
-enum TemplateEnum { classic12Template, classic9Template }
+enum TemplateEnum { classic12Template, wolfKingGuardTemplate, wolfKingDreamerTemplate,
+  crowHiddenWolfTemplate, classic9Template, whiteWolfKingKnightTemplate }
 
 Template classic12Template = Template(
   name:"预女猎白",
   templateId: 1,
-  count: 12,
+  defaultCount: 12,
+  counts: <int>[11,12,13],
 );
+
+
+Template wolfKingGuardTemplate = Template(
+  name:"狼枪守卫",
+  templateId: 3,
+  defaultCount: 12,
+  counts: <int>[11,12,13],
+);
+
+Template wolfKingDreamerTemplate = Template(
+  name:"狼枪摄梦人",
+  templateId: 3,
+  defaultCount: 12,
+  counts: <int>[11,12,13],
+);
+
+Template crowHiddenWolfTemplate = Template(
+  name:"乌鸦隐狼",
+  templateId: 3,
+  defaultCount: 12,
+  counts: <int>[11,12,13],
+);
+
 
 Template classic9Template = Template(
   name:"预女猎",
-  templateId: 1,
-  count: 9,
+  templateId: 11,
+  defaultCount: 9,
+  counts: <int>[8,9,10],
+);
+
+Template whiteWolfKingKnightTemplate = Template(
+  name:"白狼骑士",
+  templateId: 21,
+  defaultCount: 15,
+  counts: <int>[14,15,16],
 );
 
 class Template {
@@ -114,12 +155,15 @@ class Template {
   Template({
     this.name = "",
     this.templateId = -1,
-    this.count = 12,
+    this.defaultCount = 12,
 //    this.roles = <Role>[],
+    this.counts = const <int>[12],
   });
 
   int templateId;
   String name;
-  int count;
+  int defaultCount;
+  List<int> counts;
+
 }
 

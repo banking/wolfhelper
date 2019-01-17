@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wolfhelper/chip.dart';
 import 'package:wolfhelper/player.dart';
 import 'package:wolfhelper/mark.dart';
+import 'package:wolfhelper/values.dart';
 
 class AvatarLayout extends StatefulWidget {
 
