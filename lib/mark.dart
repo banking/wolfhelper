@@ -15,9 +15,6 @@ class Mark {
 class StatusMark extends Mark {
   StatusMark( int roleId, String rolePic, String roleName)
       : super(roleId, rolePic, roleName);
-  int markId;
-  String markPicPath;
-  String name;
 }
 
 class NumberMark extends Mark {
