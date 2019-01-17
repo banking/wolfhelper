@@ -15,21 +15,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new StoreProvider(
-      store: store,
-    ),
-//    return MaterialApp(
-//      routes: <String, WidgetBuilder>{
-//        'about': (BuildContext context) => About(seed: seed),
-//        'template': (BuildContext context) => TemplatePage(seed: seed),
-//      },
-//      title: 'Flutter Demo',
-//      theme: ThemeData(
-//        primarySwatch: Colors.blue,
-//        fontFamily: 'ComicNeue',
-//      ),
-//      home: MyHomePage(title: 'Flutter Demo Home Page'),
-//    );
+//    return new StoreProvider(
+//      store: store,
+//    ),
+    return MaterialApp(
+      routes: <String, WidgetBuilder>{
+        'about': (BuildContext context) => About(seed: seed),
+        'template': (BuildContext context) => TemplatePage(seed: seed),
+      },
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'ComicNeue',
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
   }
 
 
