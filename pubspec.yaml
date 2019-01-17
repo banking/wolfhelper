@@ -43,6 +43,8 @@ flutter:
     - assets/drawer_bg.png
     - assets/head_border_1.png
     - assets/head_border_2.png
+    - assets/zan.png
+    - assets/cai.png
     - assets/mainmenu_mode_ui_role_1.png
     - assets/mainmenu_mode_ui_role_2.png
     - assets/mainmenu_mode_ui_role_3.png

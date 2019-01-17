@@ -122,10 +122,10 @@ class HelperDrawer extends StatelessWidget {
               Navigator.pushNamed(context, 'template');
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.brightness_5),
-            title: const Text('设置'),
-          ),
+//          ListTile(
+//            leading: const Icon(Icons.brightness_5),
+//            title: const Text('设置'),
+//          ),
           ListTile(
             leading: const Icon(Icons.contact_mail),
             title: const Text('关于作者'),

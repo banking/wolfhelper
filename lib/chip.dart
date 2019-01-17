@@ -139,43 +139,72 @@ class _RoleChipSelectorState extends State<RoleChipSelector> {
     }).toList();
 
     final List<Widget> allRoleChips = _roleMarks.map<Widget>((Mark role) {
-      return ChoiceChip(
-        key: ValueKey<String>(role.name),
-        backgroundColor: _nameToColor(role.name),
-        label: Text(_capitalize(role.name)),
-        selected: false,
-        onSelected: (bool value) {
-          setState(() {
-//            _markMaterial = value ? role.name : '';
-            _addRoles(role);
-          });
-          widget.notifyParentSetState();
-        },
-      );
+        return ChoiceChip(
+          key: ValueKey<String>(role.name),
+          backgroundColor: _nameToColor(role.name),
+          label: Text(_capitalize(role.name)),
+          selected: false,
+          onSelected: (bool value) {
+            setState(() {
+              _addRoles(role);
+            });
+            widget.notifyParentSetState();
+          },
+        );
     }).toList();
 
     final List<Widget> numberChips = _numberMarks.map<Widget>((Mark role) {
-      ChoiceChip choiceChip = ChoiceChip(
-        key: ValueKey<String>(role.name),
-        backgroundColor: _nameToColor(role.name),
-        label: Text(_capitalize(role.name)),
-        selected: _markStatus == role.name,
-        onSelected: (bool value) {
-          setState(() {
-            if (role is StatusMark) {
+      if (role is StatusMark) {
+        String imgUrl = "";
+        String text = "";
+        if (role.name == "+") {
+          imgUrl = "assets/zan.png";
+          text = "保";
+        }
+        if (role.name == "-") {
+          imgUrl = "assets/cai.png";
+          text = "踩";
+        }
+        return ChoiceChip(
+          key: ValueKey<String>(role.name),
+          backgroundColor: _nameToColor(role.name),
+          avatar: Image.asset(
+              imgUrl,
+          ),
+          label:Text(
+            text,
+          ),
+          selected: _markStatus == role.name,
+          onSelected: (bool value) {
+            setState(() {
               _markStatus = role.name;
-            }
-            if (role is NumberMark) {
-              if (_markStatus != "") {
-                role.status = _markStatus;
-                _addRoles(role);
+            });
+            widget.notifyParentSetState();
+          },
+        );
+      } else {
+        ChoiceChip choiceChip = ChoiceChip(
+          key: ValueKey<String>(role.name),
+          backgroundColor: _nameToColor(role.name),
+          label: Text(_capitalize(role.name)),
+          selected: _markStatus == role.name,
+          onSelected: (bool value) {
+            setState(() {
+              if (role is StatusMark) {
+                _markStatus = role.name;
               }
-            }
-          });
-          widget.notifyParentSetState();
-        },
-      );
-      return choiceChip;
+              if (role is NumberMark) {
+                if (_markStatus != "") {
+                  role.status = _markStatus;
+                  _addRoles(role);
+                }
+              }
+            });
+            widget.notifyParentSetState();
+          },
+        );
+        return choiceChip;
+      }
     }).toList();
 
     final ThemeData theme = Theme.of(context);
