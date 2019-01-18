@@ -57,7 +57,17 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    ///通过state判断App前后台切换
+    if (state == AppLifecycleState.resumed) {
+      setState(() {
+        //do nothing 为子Widget调用
+      });
+    }
+  }
 
   void onTemplateUpdate() {
     setState(() {

@@ -10,13 +10,7 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: AboutPage(title: 'Flutter Demo Home Page'),
-    );
+    return AboutPage();
   }
 }
 
@@ -44,6 +38,13 @@ class _AboutState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("关于"),
+        leading: new IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () { Navigator.pop(context); },
+        ),
+      ),
       body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(

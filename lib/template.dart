@@ -11,13 +11,7 @@ class TemplatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: TemplateView(title: 'Flutter Demo Home Page'),
-    );
+    return TemplateView();
   }
 }
 
@@ -59,6 +53,13 @@ class _TemplateState extends State<TemplateView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("编辑板子"),
+        leading: new IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () { Navigator.pop(context); },
+        ),
+      ),
       body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
